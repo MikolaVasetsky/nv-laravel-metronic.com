@@ -16,8 +16,6 @@
 	})->name('home');
 
 Route::get('/login', 'AuthController@index')->name('loginPage');
-Route::post('/login', 'AuthController@store')->name('login');
-Route::post('/register', 'AuthController@register')->name('register');
 
 Route::group(['prefix' => 'admin'], function () {
 	Route::get('/', function () {

@@ -46,7 +46,13 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END PAGE LEVEL STYLES -->
         <!-- BEGIN THEME LAYOUT STYLES -->
         <!-- END THEME LAYOUT STYLES -->
-        <link rel="shortcut icon" href="favicon.ico" /> </head>
+        <link rel="shortcut icon" href="favicon.ico" />
+        <style type="text/css">
+            .custom_alert {
+                margin: 10px 0 7px 0;
+            }
+        </style>
+    </head>
     <!-- END HEAD -->
 
     <body class=" login">
@@ -59,21 +65,13 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN LOGIN -->
         <div class="content">
             <!-- BEGIN LOGIN FORM -->
-            <form class="login-form" action="{{route('login')}}" method="post">
+            <form class="login-form" action="{{route('api.login')}}" method="post">
                 {{csrf_field()}}
                 <h3 class="form-title">Login to your account</h3>
                 <div class="alert alert-danger display-hide">
                     <button class="close" data-close="alert"></button>
-                    <span> Enter any email and password. </span>
+                    <span></span>
                 </div>
-                @if ( count($errors) )
-                    @foreach($errors->all() as $error)
-                        <div class="alert alert-danger">
-                            <button class="close" data-close="alert"></button>
-                            <span>{{ $error }}</span>
-                        </div>
-                    @endforeach
-                @endif
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                     <label class="control-label visible-ie8 visible-ie9">Email</label>
@@ -139,10 +137,13 @@ License: You must have a valid license purchased only from themeforest(the above
             </form>
             <!-- END FORGOT PASSWORD FORM -->
             <!-- BEGIN REGISTRATION FORM -->
-            <form class="register-form" action="{{route('register')}}" method="post">
+            <form class="register-form" action="{{route('api.register')}}" method="post">
                 {{csrf_field()}}
                 <h3>Sign Up</h3>
                 <p> Enter your account details below: </p>
+                <div class="alert alert-danger display-hide">
+                    <button class="close" data-close="alert"></button>
+                </div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Name</label>
                     <div class="input-icon">

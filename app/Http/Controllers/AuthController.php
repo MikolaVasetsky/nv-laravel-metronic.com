@@ -36,12 +36,10 @@ class AuthController extends Controller
     public function store()
     {
         if ( ! auth()->attempt(request(['email', 'password'])) ) {
-            return back()->withErrors([
-                'message' => 'Please check your credentials and try again.'
-            ]);
+            return response('Please check your credentials and try again.', 200);
         }
 
-        return redirect()->home();
+        return response('success', 200);
     }
 
     /**
@@ -95,6 +93,6 @@ class AuthController extends Controller
 
         session()->flash('message', 'Thanks so much for sugning up!');
 
-        return redirect()->home();
+        return response('success', 200);
     }
 }
