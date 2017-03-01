@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\RegistrationForm;
+use App\Http\Controllers\Controller;
+use App\User;
+use Datatables;
 
-class AuthController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +16,7 @@ class AuthController extends Controller
      */
     public function index()
     {
-        // dd(auth()->check());
-        return view('auth.login');
+        return view('admin.users');
     }
 
     /**
@@ -34,14 +35,9 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        // return redirect(URL::route('login_page'));
-        if ( ! auth()->attempt(request(['email', 'password'])) ) {
-            return response('Please check your credentials and try again.', 200);
-        }
-
-        return response('success', 200);
+        //
     }
 
     /**
@@ -63,7 +59,7 @@ class AuthController extends Controller
      */
     public function edit($id)
     {
-        //
+        dd($id);
     }
 
     /**
@@ -89,10 +85,19 @@ class AuthController extends Controller
         //
     }
 
-    public function register(RegistrationForm $form)
+    public function list()
     {
-        $form->persist();
+        $users = User::select(['id', 'name', 'email', 'admin', 'created_at', 'updated_at']);
 
-        return response('success', 200);
+        return Datatables::of($users)
+            ->addColumn('action', function ($user) {
+                return '<a href="'.route('admin.user.edit', $user->id).'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+            })
+            ->editColumn('admin','@if($admin === 1)
+                                        Admin
+                                    @else
+                                        User
+                                    @endif')
+            ->make(true);
     }
 }

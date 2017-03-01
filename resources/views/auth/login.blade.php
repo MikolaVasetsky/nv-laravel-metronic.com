@@ -21,6 +21,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <head>
         <meta charset="utf-8" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Metronic Admin Theme #1 | User Login 4</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -65,7 +66,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN LOGIN -->
         <div class="content">
             <!-- BEGIN LOGIN FORM -->
-            <form class="login-form" action="{{route('api.login')}}" method="post">
+            <form class="login-form" action="{{route('login')}}" method="post">
                 {{csrf_field()}}
                 <h3 class="form-title">Login to your account</h3>
                 <div class="alert alert-danger display-hide">
@@ -137,7 +138,7 @@ License: You must have a valid license purchased only from themeforest(the above
             </form>
             <!-- END FORGOT PASSWORD FORM -->
             <!-- BEGIN REGISTRATION FORM -->
-            <form class="register-form" action="{{route('api.register')}}" method="post">
+            <form class="register-form" action="{{route('register')}}" method="post">
                 {{csrf_field()}}
                 <h3>Sign Up</h3>
                 <p> Enter your account details below: </p>
@@ -213,6 +214,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <!-- END THEME LAYOUT SCRIPTS -->
+        <script src="{{asset('js/script.js')}}" type="text/javascript"></script>
     </body>
 
 </html>

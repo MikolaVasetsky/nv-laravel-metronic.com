@@ -49,16 +49,21 @@ var Login = function () {
             },
 
             submitHandler: function (form) {
-				$.post('/api/login', {
-					email: $(form).find('input[name="email"]').val(),
-					password: $(form).find('input[name="password"]').val()
-				}, function(response) {
-					if ( response == 'success' ) {
-						window.location = '/';
-					} else {
-						$('.alert-danger', $('.login-form')).show();
-						$('.alert-danger span', $('.login-form')).html(response);
-					}
+				$.ajax({
+				    type: "POST",
+				    url: '/login',
+				    data: {
+						email: $(form).find('input[name="email"]').val(),
+						password: $(form).find('input[name="password"]').val()
+				    },
+				    success: function( response ) {
+						if ( response == 'success' ) {
+							window.location = '/';
+						} else {
+							$('.alert-danger', $('.login-form')).show();
+							$('.alert-danger span', $('.login-form')).html(response);
+						}
+				    }
 				});
             }
         });
@@ -172,7 +177,7 @@ var Login = function () {
 	                }
 	            },
 
-	            invalidHandler: function (event, validator) { //display error alert on form submit   
+	            invalidHandler: function (event, validator) { //display error alert on form submit
 
 	            },
 
@@ -187,7 +192,7 @@ var Login = function () {
 	            },
 
 	            errorPlacement: function (error, element) {
-	                if (element.attr("name") == "tnc") { // insert checkbox errors after the container                  
+	                if (element.attr("name") == "tnc") { // insert checkbox errors after the container
 	                    error.insertAfter($('#register_tnc_error'));
 	                } else if (element.closest('.input-icon').size() === 1) {
 	                    error.insertAfter(element.closest('.input-icon'));
@@ -197,25 +202,31 @@ var Login = function () {
 	            },
 
 	            submitHandler: function (form) {
-					$.post('/api/register', {
-						name: $(form).find('input[name="name"]').val(),
-						email: $(form).find('input[name="email"]').val(),
-						password: $(form).find('input[name="password"]').val(),
-						password_confirmation: $(form).find('input[name="password_confirmation"]').val()
-					}, function(response) {
-						if ( response == 'success' ) {
-							window.location = '/';
-						} else {
-							alert('Error with create user');
-						}
-					}).fail(function(error) {
-						$('.alert-danger', $('.register-form')).show();
-						$('.alert-danger span', $('.register-form')).remove();
-					    var errors = $.parseJSON(error.responseText);
-						$.each(errors, function(i, val) {
-							$('.alert-danger', $('.register-form')).append('<span>' + val + '<hr class="custom_alert"></span>');
-						});
-					})
+					$.ajax({
+					    type: "POST",
+					    url: '/register',
+					    data: {
+					    	name: $(form).find('input[name="name"]').val(),
+					    	email: $(form).find('input[name="email"]').val(),
+					    	password: $(form).find('input[name="password"]').val(),
+					    	password_confirmation: $(form).find('input[name="password_confirmation"]').val()
+					    },
+					    success: function( response ) {
+							if ( response == 'success' ) {
+								window.location = '/';
+							} else {
+								alert('Error with create user');
+							}
+					    },
+					    error: function(error) {
+							$('.alert-danger', $('.register-form')).show();
+							$('.alert-danger span', $('.register-form')).remove();
+						    var errors = $.parseJSON(error.responseText);
+							$.each(errors, function(i, val) {
+								$('.alert-danger', $('.register-form')).append('<span>' + val + '<hr class="custom_alert"></span>');
+							});
+					    }
+					});
 	            }
 	        });
 

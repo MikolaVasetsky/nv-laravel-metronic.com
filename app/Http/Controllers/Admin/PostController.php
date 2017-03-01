@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\RegistrationForm;
+use App\Http\Controllers\Controller;
 
-class AuthController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class AuthController extends Controller
      */
     public function index()
     {
-        // dd(auth()->check());
-        return view('auth.login');
+        return view('admin.posts.index');
     }
 
     /**
@@ -25,7 +24,7 @@ class AuthController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -36,12 +35,7 @@ class AuthController extends Controller
      */
     public function store()
     {
-        // return redirect(URL::route('login_page'));
-        if ( ! auth()->attempt(request(['email', 'password'])) ) {
-            return response('Please check your credentials and try again.', 200);
-        }
-
-        return response('success', 200);
+        dd(request()->all());
     }
 
     /**
@@ -87,12 +81,5 @@ class AuthController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function register(RegistrationForm $form)
-    {
-        $form->persist();
-
-        return response('success', 200);
     }
 }

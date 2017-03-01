@@ -21,6 +21,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <head>
         <meta charset="utf-8" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Metronic Admin Theme #1 | Admin Dashboard</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -44,8 +45,10 @@ License: You must have a valid license purchased only from themeforest(the above
         <link href="{{asset('assets/layouts/layout/css/layout.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('assets/layouts/layout/css/themes/darkblue.min.css')}}" rel="stylesheet" type="text/css" id="style_color" />
         <link href="{{asset('assets/layouts/layout/css/custom.min.css')}}" rel="stylesheet" type="text/css" />
+
+        <link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
-        <link rel="shortcut icon" href="favicon.ico" /> </head>
+        <link rel="shortcut icon" href="{{asset('favicon.ico')}}" /> </head>
     <!-- END HEAD -->
 
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-md">
@@ -77,6 +80,9 @@ License: You must have a valid license purchased only from themeforest(the above
         <![endif]-->
         <!-- BEGIN CORE PLUGINS -->
         <script src="{{asset('assets/global/plugins/jquery.min.js')}}" type="text/javascript"></script>
+
+        <script src="{{asset('js/script.js')}}" type="text/javascript"></script>
+
         <script src="{{asset('assets/global/plugins/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('assets/global/plugins/js.cookie.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js')}}" type="text/javascript"></script>
