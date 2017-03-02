@@ -3,7 +3,7 @@ var FormValidationMd = function() {
     var handleValidation3 = function() {
         // for more info visit the official plugin documentation: 
         // http://docs.jquery.com/Plugins/Validation
-        var form1 = $('#form_sample_3');
+        var form1 = $('#create_post');
         var error1 = $('.alert-danger', form1);
         var success1 = $('.alert-success', form1);
 
@@ -13,8 +13,11 @@ var FormValidationMd = function() {
             focusInvalid: false, // do not focus the last invalid input
             ignore: "", // validate all fields including form hidden input
             rules: {
-                name: {
+                title: {
                     minlength: 2,
+                    required: true
+                },
+                body: {
                     required: true
                 }
             },
@@ -26,13 +29,7 @@ var FormValidationMd = function() {
             },
 
             errorPlacement: function(error, element) {
-                if (element.is(':checkbox')) {
-                    error.insertAfter(element.closest(".md-checkbox-list, .md-checkbox-inline, .checkbox-list, .checkbox-inline"));
-                } else if (element.is(':radio')) {
-                    error.insertAfter(element.closest(".md-radio-list, .md-radio-inline, .radio-list,.radio-inline"));
-                } else {
-                    error.insertAfter(element); // for other inputs, just perform default behavior
-                }
+                error.insertAfter(element); // for other inputs, just perform default behavior
             },
 
             highlight: function(element) { // hightlight error inputs
@@ -51,9 +48,9 @@ var FormValidationMd = function() {
             },
 
             submitHandler: function(form) {
-                form.submit();
                 success1.show();
                 error1.hide();
+                form.submit();
             }
         });
     }

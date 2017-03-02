@@ -21,18 +21,28 @@
                         <i class="fa fa-circle"></i>
                     </li>
                     <li>
-                        <a href="{{route('admin.users')}}">Users</a>
+                        <a href="{{route('admin.posts')}}">Posts</a>
                     </li>
                 </ul>
             </div>
             <!-- END PAGE BAR -->
             <!-- BEGIN PAGE TITLE-->
-            <h1 class="page-title"> Ajax Users table
-                <small>Users list</small>
+            <h1 class="page-title"> Posts list
+                <small>Look at posts</small>
             </h1>
             <!-- END PAGE TITLE-->
             <!-- END PAGE HEADER-->
-            test3
+            <ul>
+            @forelse($posts as $post)
+                <li>
+                    <a href="{{ route('admin.posts.show', $post->id) }}">
+                        {{$post->title}}
+                    </a>
+                </li>
+            @empty
+                <h1>No posts</h1>
+            @endforelse
+            </ul>
         </div>
         <!-- END CONTENT BODY -->
     </div>

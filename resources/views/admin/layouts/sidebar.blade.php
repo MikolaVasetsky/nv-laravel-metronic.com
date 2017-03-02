@@ -25,7 +25,7 @@
 
             <li class="nav-item start {{ request()->is('admin/posts/*') || request()->is('admin/posts') ? 'active open' : '' }}">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="icon-home"></i>
+                    <i class="icon-layers"></i>
                     <span class="title">Post</span>
                     <span></span>
                     <span class="arrow {{ request()->is('admin/posts/*') || request()->is('admin/posts') ? 'open' : '' }}"></span>
@@ -33,7 +33,7 @@
                 <ul class="sub-menu">
                     <li class="nav-item start {{ request()->is('admin/posts') ? 'active open' : '' }}">
                         <a href="{{route('admin.posts')}}" class="nav-link ">
-                            <i class="icon-bar-chart"></i>
+                            <i class="icon-list"></i>
                             <span class="title">List</span>
                             <span class="{{ request()->is('admin/posts') ? 'selected' : '' }}"></span>
                         </a>

@@ -36,4 +36,14 @@ class User extends Authenticatable
     {
        return $this->admin;
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function publish(Post $post)
+    {
+        $this->posts()->save($post);
+    }
 }

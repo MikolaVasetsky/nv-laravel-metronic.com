@@ -210,7 +210,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="{{asset('assets/global/scripts/app.min.js')}}" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="{{asset('assets/pages/scripts/login-4.js')}}" type="text/javascript"></script>
+        <script src="{{asset('js/login.js')}}" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <!-- END THEME LAYOUT SCRIPTS -->

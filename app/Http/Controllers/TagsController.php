@@ -1,20 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Tag;
 
-class PostController extends Controller
+class TagsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Tag $tag)
     {
-        return view('admin.posts.index');
+        $posts = $tag->posts;
+
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -24,7 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        //
     }
 
     /**
@@ -33,9 +35,9 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        dd(request()->all());
+        //
     }
 
     /**
